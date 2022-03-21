@@ -1,38 +1,73 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.main .content {
+  max-width: 850px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card-wrapper {
+  background-color: white;
+  color: black;
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.card-wrapper .card-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-wrapper .card-detail .detail-header .card-title {
+  font-size: 24px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.card-wrapper .card-detail .detail-header .card-desc {
+  font-size: 18px;
+  font-weight: 400;
+  color: gray;
+}
+
+.card-wrapper .card-detail .detail-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.btn {
+  background-color: salmon;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.modal {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  background-color: papayawhip;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rebeccapurple;
 }
