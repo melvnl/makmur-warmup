@@ -1,4 +1,4 @@
-import Button from "./Button";
+// import Button from "./Button";
 
 export default function Card({
     bookTotal
@@ -9,7 +9,7 @@ export default function Card({
                 Books ({bookTotal})
             </div>
             <div className="header-title">
-                <Button />
+                Button
             </div>
         </div>
     );

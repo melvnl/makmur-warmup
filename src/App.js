@@ -4,13 +4,11 @@ import Card from '../src/components/Card'
 import Header from '../src/components/Header'
 import './App.css'
 
-const baseURL = "https://5de759a9b1ad690014a4e21e.mockapi.io/api/v1/books";
-
 function App() {
   const [books, setBooks] = useState(null);
 
   useEffect(() => {
-    axios.get(baseURL).then((response) => {
+    axios.get(process.env.REACT_APP_BOOK_API).then((response) => {
       console.log(response)
       setBooks(response.data);
     });
