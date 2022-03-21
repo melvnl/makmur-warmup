@@ -1,26 +1,19 @@
-import { useEffect, useState } from 'react'
-import axios from 'axios';
 import Card from '../src/components/Card'
 import Header from '../src/components/Header'
 import './App.css'
 
+import { useSelector } from 'react-redux'
+
 function App() {
-  const [books, setBooks] = useState(null);
+  const bookList = useSelector((state) => state.books)
 
-  useEffect(() => {
-    axios.get(process.env.REACT_APP_BOOK_API).then((response) => {
-      console.log(response)
-      setBooks(response.data);
-    });
-  }, []);
-
-  if (!books) return null;
+  if (!bookList) return null;
 
   return (
     <div className='main'>
       <div className="content">
-        <Header bookTotal={books.length} />
-        {books.map((book) =>
+        <Header bookTotal={bookList.length} />
+        {bookList.map((book) =>
         (
           <Card key={book.id} title={book.title}
             author={book.author}
