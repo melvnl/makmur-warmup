@@ -71,3 +71,9 @@
   bottom: 0;
   background-color: rebeccapurple;
 }
+
+.button {
+  padding: 4px 6px;
+  color: #000;
+  background-color: salmon;
+}

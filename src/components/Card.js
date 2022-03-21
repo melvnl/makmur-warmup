@@ -1,7 +1,5 @@
-import propTypes from "prop-types";
 
 export default function Card({
-    key,
     title,
     author,
     isbn,
