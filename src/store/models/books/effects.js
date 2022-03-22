@@ -5,7 +5,7 @@ const effects = (dispatch) => ({
   async getBooks() {
     try {
       const result = await axios.get(
-        'https://5de759a9b1ad690014a4e21e.mockapi.io/api/v1/books',
+        process.env.REACT_APP_BOOK_API,
       ).then((res) => { return res.data});
 
       dispatch.books.setBooks(result);

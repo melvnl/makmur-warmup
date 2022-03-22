@@ -48,21 +48,6 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.btn {
-  background-color: salmon;
-  padding: 8px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-.modal {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  right: 40px;
-  bottom: 40px;
-  background-color: papayawhip;
-}
-
 .overlay {
   position: fixed;
   top: 0;
@@ -70,12 +55,6 @@
   right: 0;
   bottom: 0;
   background-color: rebeccapurple;
-}
-
-.button {
-  padding: 4px 6px;
-  color: #000;
-  background-color: salmon;
 }
 
 .empty-card {
