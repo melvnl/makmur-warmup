@@ -77,3 +77,8 @@
   color: #000;
   background-color: salmon;
 }
+
+.empty-card {
+  text-align: center;
+  margin: auto;
+}

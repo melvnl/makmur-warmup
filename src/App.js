@@ -2,18 +2,36 @@ import Card from '../src/components/Card'
 import Header from '../src/components/Header'
 import './App.css'
 
-import { useSelector } from 'react-redux'
+import { useDispatch , useSelector} from 'react-redux'
+import { useEffect } from 'react'
 
 function App() {
-  const bookList = useSelector((state) => state.books)
 
-  if (!bookList) return null;
+  const books = useSelector((state) => state.books.data);
+
+  const {
+    books: {
+      getBooks,
+    },
+  } = useDispatch();
+  
+  useEffect(() => {
+    getBooks();
+  }, [getBooks]);
+
+  if (!books) return (
+    <div className="empty-card">
+      Book is empty
+    </div>
+  );
+
+  console.log(books)
 
   return (
     <div className='main'>
       <div className="content">
-        <Header bookTotal={bookList.length} />
-        {bookList.map((book) =>
+        <Header bookTotal={books.length} />
+        {books.map((book) =>
         (
           <Card key={book.id} title={book.title}
             author={book.author}

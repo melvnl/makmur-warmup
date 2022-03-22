@@ -1,6 +1,5 @@
-import Button from "./Button";
 
-export default function Card({
+export default function Header({
     bookTotal
 }) {
     return (
@@ -9,7 +8,7 @@ export default function Card({
                 Books ({bookTotal})
             </div>
             <div className="header-title">
-                <Button title="Add" />
+                123
             </div>
         </div>
     );
