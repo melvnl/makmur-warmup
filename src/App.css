@@ -16,7 +16,7 @@
 
 .card-wrapper {
   background-color: white;
-  color: black;
+  color: #333333;
   font-size: 18px;
   display: flex;
   flex-direction: row;
@@ -40,7 +40,7 @@
 .card-wrapper .card-detail .detail-header .card-desc {
   font-size: 18px;
   font-weight: 400;
-  color: gray;
+  color: #9b9b9b;
 }
 
 .card-wrapper .card-detail .detail-body {

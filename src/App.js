@@ -25,8 +25,6 @@ function App() {
     </div>
   );
 
-  console.log(books)
-
   return (
     <div className='main'>
       <div className="content">

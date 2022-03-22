@@ -21,19 +21,19 @@ export default function Card({
                 </div>
                 <div className="detail-body">
                     <div className="wrapper">
-                        <p>ISBN</p>
+                        <p style={{color: "#9b9b9b"}}>ISBN</p>
                         <p>{isbn}</p>
                     </div>
                     <div className="wrapper">
-                        <p>Number of Page</p>
+                        <p style={{color: "#9b9b9b"}}>Number of Page</p>
                         <p>{numberOfPages}</p>
                     </div>
                     <div className="wrapper">
-                        <p>Published On</p>
+                        <p style={{color: "#9b9b9b"}}>Published On</p>
                         <p>{publishedOn}</p>
                     </div>
                     <div className="wrapper">
-                        <p>Country Publisher</p>
+                        <p style={{color: "#9b9b9b"}}>Country Publisher</p>
                         <p>{country}</p>
                     </div>
 

@@ -14,7 +14,8 @@ export default function Header({
                 Books ({bookTotal})
             </div>
             <div className="header-button">
-                <button style={{cursor: 'pointer'}} onClick={ ()=> setIsOpen(!isOpen)}>Add +</button>
+                <button style={{cursor: 'pointer', padding: 10, backgroundColor:"#FF6F81",color:"#fff", border:"none", fontSize:16, 
+                borderRadius:5, outline:0}} onClick={ ()=> setIsOpen(!isOpen)}>Add +</button>
             </div>
             {isOpen && <Modal setIsOpen={setIsOpen} />}
         </div>
