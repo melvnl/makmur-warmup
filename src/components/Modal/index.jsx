@@ -31,8 +31,8 @@ function Modal({ setIsOpen }) {
   const [page, setPage] = useState('');
   const [country, setCountry] = useState('');
 
-  const addBook = (e) => {
-    e.preventDefault();
+  const addBook = () => {
+    // e.preventDefault();
 
     axios({
       method: 'POST',

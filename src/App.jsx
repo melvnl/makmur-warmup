@@ -21,7 +21,7 @@ function App() {
   if (!books) {
     return (
       <div className="empty-card">
-        Book is empty
+        Loading...
       </div>
     );
   }
