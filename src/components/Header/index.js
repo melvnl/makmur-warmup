@@ -1,7 +1,5 @@
 import { useState } from "react";
-import Modal from "./Modal";
-
-
+import Modal from "../Modal";
 
 export default function Header({
     bookTotal
@@ -11,7 +9,7 @@ export default function Header({
     return (
         <div className="header">
             <div className="header-title">
-                Books ({bookTotal})
+                Books {bookTotal ? (<span>({bookTotal})</span> ) : ``}
             </div>
             <div className="header-button">
                 <button style={{cursor: 'pointer', padding: 10, backgroundColor:"#FF6F81",color:"#fff", border:"none", fontSize:16, 
