@@ -6,7 +6,7 @@ import Header from './components/Header';
 import './App.css';
 
 function App() {
-  const books = useSelector((state) => state.books.data);
+  const books = useSelector((state) => state.books.books);
 
   const {
     books: {

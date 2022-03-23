@@ -8,10 +8,10 @@ export const initialState = {
 export default {
   state: initialState,
   reducers: {
-    setBooks(state, data) {
+    setBooks(state, payload) {
       return {
         ...state,
-        data,
+        books: payload,
       };
     },
   },

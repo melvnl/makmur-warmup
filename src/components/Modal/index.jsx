@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
 function Modal({ setIsOpen }) {
-  const countries = useSelector((state) => state.countries.data);
+  const countries = useSelector((state) => state.countries.countries);
 
   const {
     countries: {
@@ -18,7 +18,7 @@ function Modal({ setIsOpen }) {
   } = useDispatch();
 
   useEffect(() => {
-    if (!countries) {
+    if (countries === null) {
       getCountries();
     }
   }, [countries, getCountries]);
@@ -31,9 +31,13 @@ function Modal({ setIsOpen }) {
   const [page, setPage] = useState('');
   const [country, setCountry] = useState('');
 
-  const addBook = () => {
-    // e.preventDefault();
+  const {
+    books: {
+      getBooks,
+    },
+  } = useDispatch();
 
+  const addBook = () => {
     axios({
       method: 'POST',
       url: process.env.REACT_APP_BOOK_API,
@@ -49,11 +53,14 @@ function Modal({ setIsOpen }) {
     })
       .then(() => {
         setIsOpen(false);
+        getBooks();
       })
       .catch(() => {
 
       });
   };
+
+  console.log(countries);
 
   return (
     <>
@@ -67,7 +74,7 @@ function Modal({ setIsOpen }) {
             x
           </button>
           <div className="modalContent">
-            <form onSubmit={addBook} style={{ padding: 8 }}>
+            <div style={{ padding: 8 }}>
               <div className="form-row" style={{ marginBottom: 20 }}>
                 <label htmlFor="title" style={{ display: 'block', marginBottom: 4, fontSize: 16 }}>
                   Title:
@@ -162,7 +169,7 @@ function Modal({ setIsOpen }) {
                     fontSize: 16, width: '100%', padding: 4, height: 30, outline: 'none', backgroundColor: '#F6F6F6', border: 'none',
                   }}
                 >
-                  {!countries ? (
+                  { countries === null ? (
                     <option>Loading..</option>
                   ) : (
                     countries.map((item) => (
@@ -173,14 +180,18 @@ function Modal({ setIsOpen }) {
                   )}
                 </select>
               </div>
-              <input
+              <button
                 type="submit"
                 value="Submit"
+                onClick={() => addBook()}
                 style={{
                   border: 'none', color: '#fff', padding: 12, backgroundColor: '#FF6F81', float: 'right', outline: 'none', cursor: 'pointer', borderRadius: 4,
                 }}
-              />
-            </form>
+              >
+                Submit
+
+              </button>
+            </div>
           </div>
         </div>
       </div>
