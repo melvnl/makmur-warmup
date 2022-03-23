@@ -6,13 +6,12 @@ const effects = (dispatch) => ({
     try {
       const result = await axios.get(
         process.env.REACT_APP_COUNTRY_API,
-      ).then((res) => { return res.data});
+      ).then((res) => res.data);
 
       dispatch.countries.setCountries(result);
-    //   console.log(result)
-
+      //   console.log(result)
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
 
