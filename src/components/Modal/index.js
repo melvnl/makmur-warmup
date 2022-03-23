@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './index.css'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,23 +18,36 @@ const Modal = ({ setIsOpen }) => {
     getCountries();
   }, [getCountries]);
 
+
+  //form data
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [isbn, setIsbn] = useState("");
+  const [published, setPublished] = useState("");
+  const [page, setPage] = useState("");
+  const [country, setCountry] = useState("");
   //dummy data
   const addBook = (e) => {
     e.preventDefault();
-    axios.post(process.env.REACT_APP_BOOK_API, {
-      "title": "Naruto",
-      "author": "Michelle Durgan",
-      "isbn": "45afbccf-ee8b-45c4-b576-9b097640143",
-      "publishedOn": "2021-04-01T06:22:04.049Z",
-      "numberOfPages": 40,
-      "country": "Eritrea",
-      "imageUrl": "https://picsum.photos/200/300"
+
+    axios({
+      method: "POST",
+      url: process.env.REACT_APP_BOOK_API,
+      data: {
+        title: title,
+        author: author,
+        isbn: isbn,
+        publishedOn: published,
+        numberOfPages: page,
+        country: country,
+        imageUrl: "https://picsum.photos/200/300"
+      }
     })
-      .then(function (response) {
-        console.log("sucess")
+      .then(({ data }) => {
+
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch((error) => {
+
       });
   }
 
@@ -57,37 +70,43 @@ const Modal = ({ setIsOpen }) => {
                 <label style={{ display: 'block', marginBottom: 4, fontSize: 16 }}>
                   Title:
                 </label>
-                <input type="text" name="name" placeholder="Title" style={{ fontSize: 16, width: '100%', padding: 4, height: 26, backgroundColor: "#F6F6F6", border: "none", outline: "none" }} />
+                <input type="text" name="name" placeholder="Title" value={title}
+                  onChange={(e) => setTitle(e.target.value)} required style={{ fontSize: 16, width: '100%', padding: 4, height: 26, backgroundColor: "#F6F6F6", border: "none", outline: "none" }} />
               </div>
               <div className="form-row" style={{ marginBottom: 20 }}>
                 <label style={{ display: 'block', marginBottom: 4, fontSize: 16 }}>
                   Author:
                 </label>
-                <input type="text" name="author" placeholder="Author" style={{ fontSize: 16, width: '100%', padding: 4, height: 24, backgroundColor: "#F6F6F6", border: "none", outline: "none" }} />
+                <input type="text" name="author" placeholder="Author" value={author}
+                  onChange={(e) => setAuthor(e.target.value)} required style={{ fontSize: 16, width: '100%', padding: 4, height: 24, backgroundColor: "#F6F6F6", border: "none", outline: "none" }} />
               </div>
               <div className="form-row" style={{ marginBottom: 20 }}>
                 <label style={{ display: 'block', marginBottom: 4, fontSize: 16 }}>
                   ISBN:
                 </label>
-                <input type="text" name="ISBN" placeholder="ISBN" style={{ fontSize: 16, width: '100%', padding: 4, height: 24, backgroundColor: "#F6F6F6", border: "none", outline: "none" }} />
+                <input type="text" name="ISBN" placeholder="ISBN" value={isbn}
+                  onChange={(e) => setIsbn(e.target.value)} required style={{ fontSize: 16, width: '100%', padding: 4, height: 24, backgroundColor: "#F6F6F6", border: "none", outline: "none" }} />
               </div>
               <div className="form-row" style={{ marginBottom: 20 }}>
                 <label style={{ display: 'block', marginBottom: 4, fontSize: 16 }}>
                   Published On:
                 </label>
-                <input type="text" name="publishedOn" placeholder="publishedOn" style={{ fontSize: 16, width: '100%', padding: 4, height: 24, backgroundColor: "#F6F6F6", border: "none", outline: "none" }} />
+                <input type="text" name="publishedOn" placeholder="publishedOn" value={published}
+                  onChange={(e) => setPublished(e.target.value)} required style={{ fontSize: 16, width: '100%', padding: 4, height: 24, backgroundColor: "#F6F6F6", border: "none", outline: "none" }} />
               </div>
               <div className="form-row" style={{ marginBottom: 20 }}>
                 <label style={{ display: 'block', marginBottom: 4, fontSize: 16 }}>
                   Number of Page
                 </label>
-                <input type="text" name="numberOfPage" placeholder="Number of Page" style={{ fontSize: 16, width: '100%', padding: 4, height: 24, backgroundColor: "#F6F6F6", border: "none", outline: "none" }} />
+                <input type="text" name="numberOfPage" placeholder="Number of Page" value={page}
+                  onChange={(e) => setPage(e.target.value)} required style={{ fontSize: 16, width: '100%', padding: 4, height: 24, backgroundColor: "#F6F6F6", border: "none", outline: "none" }} />
               </div>
               <div className="form-row" style={{ marginBottom: 20 }}>
                 <label style={{ display: 'block', marginBottom: 4, fontSize: 16 }}>
                   Country
                 </label>
-                <select name="country" style={{ fontSize: 16, width: '100%', padding: 4, height: 30, outline: "none", backgroundColor: "#F6F6F6", border: "none" }}>
+                <select name="country" value={country}
+                  onChange={(e) => setCountry(e.target.value)} required style={{ fontSize: 16, width: '100%', padding: 4, height: 30, outline: "none", backgroundColor: "#F6F6F6", border: "none" }}>
                   {!countries ? (
                     <option>Loading..</option>
                   ) : (
