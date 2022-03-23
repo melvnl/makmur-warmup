@@ -15,8 +15,10 @@ const Modal = ({ setIsOpen }) => {
   } = useDispatch();
 
   useEffect(() => {
-    getCountries();
-  }, [getCountries]);
+    if(!countries){
+      getCountries();
+    }
+  }, [countries, getCountries]);
 
 
   //form data
@@ -44,7 +46,7 @@ const Modal = ({ setIsOpen }) => {
       }
     })
       .then(({ data }) => {
-
+        setIsOpen(false)
       })
       .catch((error) => {
 
