@@ -30,7 +30,7 @@ function Modal({ setIsOpen }) {
   const [published, setPublished] = useState('');
   const [page, setPage] = useState('');
   const [country, setCountry] = useState('');
-  // dummy data
+
   const addBook = (e) => {
     e.preventDefault();
 
@@ -191,7 +191,7 @@ function Modal({ setIsOpen }) {
 export default Modal;
 
 Modal.propTypes = {
-  setIsOpen: propTypes.bool,
+  setIsOpen: propTypes.func,
 };
 
 Modal.defaultProps = {
