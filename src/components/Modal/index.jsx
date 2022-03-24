@@ -8,6 +8,10 @@ import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
+import isAlpha from 'validator/lib/isAlpha';
+import isAlphanumeric from 'validator/lib/isAlphanumeric';
+import contains from 'validator/lib/contains';
+
 function Modal({ setIsOpen }) {
   const countries = useSelector((state) => state.countries.countries);
 
@@ -29,7 +33,18 @@ function Modal({ setIsOpen }) {
   const [isbn, setIsbn] = useState('');
   const [published, setPublished] = useState('');
   const [page, setPage] = useState('');
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState('United Kingdom');
+
+  const [error, setError] = useState(false);
+
+  const validateInput = () => {
+    if (!isAlphanumeric(title) && !isAlpha(author) && !contains(isbn, '-') && !page.isInteger) {
+      setError(true);
+      return false;
+    }
+    setError(false);
+    return true;
+  };
 
   const {
     books: {
@@ -38,29 +53,29 @@ function Modal({ setIsOpen }) {
   } = useDispatch();
 
   const addBook = () => {
-    axios({
-      method: 'POST',
-      url: process.env.REACT_APP_BOOK_API,
-      data: {
-        title,
-        author,
-        isbn,
-        publishedOn: published,
-        numberOfPages: page,
-        country,
-        imageUrl: 'https://picsum.photos/200/300',
-      },
-    })
-      .then(() => {
-        setIsOpen(false);
-        getBooks();
+    if (validateInput()) {
+      axios({
+        method: 'POST',
+        url: process.env.REACT_APP_BOOK_API,
+        data: {
+          title,
+          author,
+          isbn,
+          publishedOn: published,
+          numberOfPages: page,
+          country,
+          imageUrl: 'https://picsum.photos/200/300',
+        },
       })
-      .catch(() => {
+        .then(() => {
+          setIsOpen(false);
+          getBooks();
+        })
+        .catch(() => {
 
-      });
+        });
+    }
   };
-
-  console.log(countries);
 
   return (
     <>
@@ -180,6 +195,7 @@ function Modal({ setIsOpen }) {
                   )}
                 </select>
               </div>
+              {error ? (<p style={{ color: '#FF6F81' }}>There is an error in your input</p>) : null}
               <button
                 type="submit"
                 value="Submit"
@@ -189,7 +205,6 @@ function Modal({ setIsOpen }) {
                 }}
               >
                 Submit
-
               </button>
             </div>
           </div>
