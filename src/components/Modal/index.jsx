@@ -8,9 +8,9 @@ import './index.css';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
-import isAlpha from 'validator/lib/isAlpha';
-import isAlphanumeric from 'validator/lib/isAlphanumeric';
-import contains from 'validator/lib/contains';
+// import isAlpha from 'validator/lib/isAlpha';
+// import isAlphanumeric from 'validator/lib/isAlphanumeric';
+// import contains from 'validator/lib/contains';
 
 function Modal({ setIsOpen }) {
   const countries = useSelector((state) => state.countries.countries);
@@ -32,18 +32,34 @@ function Modal({ setIsOpen }) {
   const [author, setAuthor] = useState('');
   const [isbn, setIsbn] = useState('');
   const [published, setPublished] = useState('');
-  const [page, setPage] = useState('');
+  const [page, setPage] = useState(0);
   const [country, setCountry] = useState('United Kingdom');
 
   const [error, setError] = useState(false);
 
-  const validateInput = () => {
-    if (!isAlphanumeric(title) && !isAlpha(author) && !contains(isbn, '-') && !page.isInteger) {
-      setError(true);
-      return false;
+  const isAlphanumeric = (check) => {
+    if (check.match(/^[0-9a-zA-Z]+$/)) {
+      return true;
     }
-    setError(false);
-    return true;
+
+    return false;
+  };
+
+  const isAlpha = (check) => {
+    if (check.match(/^[a-zA-Z]+$/)) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const validateInput = () => {
+    if (isAlphanumeric(title) && isAlpha(author) && isbn.includes('-') && page !== '') {
+      setError(false);
+      return true;
+    }
+    setError(true);
+    return false;
   };
 
   const {
@@ -74,6 +90,7 @@ function Modal({ setIsOpen }) {
         .catch(() => {
 
         });
+      // console.log('input terkirim');
     }
   };
 
