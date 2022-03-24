@@ -53,8 +53,19 @@ function Modal({ setIsOpen }) {
     return false;
   };
 
+  const isDate = (check) => {
+    const reg = /^\d{2}[-]\d{2}[-]\d{4}$/;
+
+    const params = check.split('-');
+    const day = parseInt(params[0], 10);
+    const month = parseInt(params[1], 10);
+    // not good, still there is bug, ex: 31 - 02 - 2000
+    if (check.match(reg) && (day > 0 && day <= 31) && (month > 0 && month <= 12)) return true;
+    return false;
+  };
+
   const validateInput = () => {
-    if (isAlphanumeric(title) && isAlpha(author) && isbn.includes('-') && page !== '') {
+    if (isAlphanumeric(title) && isAlpha(author) && isbn.includes('-') && isDate(published) && page !== '') {
       setError(false);
       return true;
     }
@@ -90,7 +101,6 @@ function Modal({ setIsOpen }) {
         .catch(() => {
 
         });
-      // console.log('input terkirim');
     }
   };
 
@@ -163,7 +173,7 @@ function Modal({ setIsOpen }) {
                 <input
                   type="text"
                   name="publishedOn"
-                  placeholder="publishedOn"
+                  placeholder="day-month-year , ex: 01-03-2000"
                   value={published}
                   onChange={(e) => setPublished(e.target.value)}
                   required
