@@ -11,6 +11,7 @@ import axios from 'axios';
 // import isAlpha from 'validator/lib/isAlpha';
 // import isAlphanumeric from 'validator/lib/isAlphanumeric';
 // import contains from 'validator/lib/contains';
+import isDate from 'validator/lib/isDate';
 
 function Modal({ setIsOpen }) {
   const countries = useSelector((state) => state.countries.countries);
@@ -53,16 +54,16 @@ function Modal({ setIsOpen }) {
     return false;
   };
 
-  const isDate = (check) => {
-    const reg = /^\d{2}[-]\d{2}[-]\d{4}$/;
+  // const isDate = (check) => {
+  //   const reg = /^\d{2}[-]\d{2}[-]\d{4}$/;
 
-    const params = check.split('-');
-    const day = parseInt(params[0], 10);
-    const month = parseInt(params[1], 10);
-    // not good, still there is bug, ex: 31 - 02 - 2000
-    if (check.match(reg) && (day > 0 && day <= 31) && (month > 0 && month <= 12)) return true;
-    return false;
-  };
+  //   const params = check.split('-');
+  //   const day = parseInt(params[0], 10);
+  //   const month = parseInt(params[1], 10);
+  //   // not good, still there is bug, ex: 31 - 02 - 2000
+  //   if (check.match(reg) && (day > 0 && day <= 31) && (month > 0 && month <= 12)) return true;
+  //   return false;
+  // };
 
   const validateInput = () => {
     if (isAlphanumeric(title) && isAlpha(author) && isbn.includes('-') && isDate(published) && page !== '') {
@@ -173,7 +174,7 @@ function Modal({ setIsOpen }) {
                 <input
                   type="text"
                   name="publishedOn"
-                  placeholder="day-month-year , ex: 01-03-2000"
+                  placeholder="YYY-MM-DD , ex: 2000-03-20"
                   value={published}
                   onChange={(e) => setPublished(e.target.value)}
                   required
